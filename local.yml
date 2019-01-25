@@ -1,0 +1,13 @@
+version: '3'
+services:
+  python:
+#    image: python:3.6.5
+    build:
+      context: .
+      dockerfile: docker/dev/python/Dockerfile
+    environment:
+      - DJANGO_SETTINGS_MODULE=orwell.settings.local
+    volumes:
+      - .:/orwell
+    ports:
+      - 8000:8000

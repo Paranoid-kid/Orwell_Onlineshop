@@ -1,0 +1,48 @@
+{% extends "orders/base.html" %}
+
+{% block topmenu %}
+    <a class="item" href="/products/">
+        <i class="home icon"></i>
+        HOME
+    </a>
+{% endblock %}
+
+{% block content %}
+    <br>
+    <div class="ui grid container centered">
+        <div class="nine wide column">
+            <div class="ui tiny steps">
+                <div class="active step">
+                    <i class="truck icon"></i>
+                    <div class="content">
+                        <div class="title" id="blacka">Shipping</div>
+                        <div class="description">Add your shipping infomation</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <i class="info icon"></i>
+                    <div class="content">
+                        <div class="title">Confirm Order</div>
+                        <div class="description">Verify order details</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <i class="payment icon"></i>
+                    <div class="content">
+                        <div class="title">Payment</div>
+                        <div class="description">Use PayPal to pay</div>
+                    </div>
+                </div>
+            </div>
+
+            <form class="ui large form" method="post">
+                {% csrf_token %}
+                <div class="ui stacked segment">
+                    {{ customer_info_form.as_p }}
+                    <input type="submit" class="ui fluid black large submit button" value="Place order">
+                </div>
+                <div class="ui error message"></div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,181 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block title %}
+    {{ product.name }}
+{% endblock %}
+
+
+{% block topmenu %}
+    <a class="item {% block home %}{% endblock %}" href={% url 'shop:index' %}>
+        <i class="home icon"></i>
+        HOME
+    </a>
+{% endblock %}
+
+
+{% block content %}
+    <br>
+    <div class="ui container">
+        <div class="ui breadcrumb">
+            <a class="section" id="greya" href="/">Home</a>
+            <div class="divider"> /</div>
+            <a class="section" id="greya" href="{{ product.category.get_absolute_url }}">
+                {% if category %}{{ category.name }}{% else %}{{ product.category }}{% endif %}</a>
+            <div class="divider"> /</div>
+            <div class="section" id="greya">{{ product.name }}</div>
+            <div hidden="hidden" id="pid">{{ product.pid }}</div>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="ui stackable grid container">
+        <div class="nine wide right floated column">
+            <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}"
+                 class="ui big bordered rounded image">
+        </div>
+        <div hidden="hidden" class="prod-pid">{{ product.pid }}</div>
+        <div hidden="hidden" class="prod-name">{{ product.name }}</div>
+        <div hidden="hidden" class="prod-price">{{ product.price }}</div>
+        <div class="seven wide column">
+            <h1 class="ui header">{{ product.name }}</h1>
+            <h2 class="ui header">$ {{ product.price }}</h2>
+            <br>
+            <div>
+                <b>Color</b>
+                <br>
+                <br>
+                <button class="ui basic button">Silver</button>
+                <button class="ui basic button">Grey</button>
+                <button class="ui basic button">Gold</button>
+            </div>
+            <br>
+            <br>
+
+            <div>
+                <b>Capacity</b>
+                <br>
+                <br>
+                <button class="ui basic button">64GB</button>
+                <button class="ui basic button">256GB</button>
+                <button class="ui basic button">512GB</button>
+            </div>
+
+            <div class="ui divider">
+
+            </div>
+
+            <div class="">
+                <p>{{ product.description|linebreaks }}</p>
+            </div>
+            <br>
+            <br>
+            <b>Quantity</b>
+            <br>
+            <br>
+            <div class="ui grid">
+                <div class="four wide column">
+                    <div class="ui small fluid input">
+                        <input type="number" placeholder="1">
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div id="btn" class="ui animated huge black button" tabindex="0" onclick="addToCart(this)">
+                <div class="hidden content">
+                    <i class="shop icon"></i>
+                </div>
+                <div class="visible content">
+                    Add To Cart
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+    <!-- comments -->
+    <div class="ui container">
+        <div class="ui comments">
+            <h3 class="ui dividing header">Comments</h3>
+            <div class="comment">
+                <a class="avatar">
+                    <img src="https://semantic-ui.com/images/avatar/small/matt.jpg">
+                </a>
+                <div class="content">
+                    <a class="author">Moon</a>
+                    <div class="metadata">
+                        <span class="date">Today at 5:42PM</span>
+                    </div>
+                    <div class="text">
+                        How artistic!
+                    </div>
+                    <div class="actions">
+                        <a class="reply">Reply</a>
+                    </div>
+                </div>
+            </div>
+            <div class="comment">
+                <a class="avatar">
+                    <img src="https://semantic-ui.com/images/avatar/small/matt.jpg">
+                </a>
+                <div class="content">
+                    <a class="author">Snoop Dogg</a>
+                    <div class="metadata">
+                        <span class="date">Yesterday at 12:30AM</span>
+                    </div>
+                    <div class="text">
+                        <p>This has been very useful for shooting pictures. Highly recommended!</p>
+                    </div>
+                    <div class="actions">
+                        <a class="reply">Reply</a>
+                    </div>
+                </div>
+                <div class="comments">
+                    <div class="comment">
+                        <a class="avatar">
+                            <img src="https://semantic-ui.com/images/avatar/small/matt.jpg">
+                        </a>
+                        <div class="content">
+                            <a class="author">Cloud</a>
+                            <div class="metadata">
+                                <span class="date">Just now</span>
+                            </div>
+                            <div class="text">
+                                Elliot you are always so right :)
+                            </div>
+                            <div class="actions">
+                                <a class="reply">Reply</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="comment">
+                <a class="avatar">
+                    <img src="https://semantic-ui.com/images/avatar/small/matt.jpg">
+                </a>
+                <div class="content">
+                    <a class="author">John Don</a>
+                    <div class="metadata">
+                        <span class="date">5 days ago</span>
+                    </div>
+                    <div class="text">
+                        This is awesome !!!
+                    </div>
+                    <div class="actions">
+                        <a class="reply">Reply</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+{% endblock %}

@@ -1,0 +1,206 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Orwell Cyberspace{% endblock %}</title>
+    <link rel="icon" href={% static "img/favicon.png" %}>
+    <link rel="stylesheet" href={% static "css/semantic.min.css" %}>
+    <link rel="stylesheet" href={% static "css/custom.css" %}>
+</head>
+
+<body onload="totalNumPrice()">
+<!-- sidebar menu -->
+<div class="ui left vertical thin inverted {% block sidebar %} {% endblock %} overlay sidebar menu">
+    <div class="item">
+        <a class="ui logo icon image" href="/">
+            <img src={% static "img/icon.svg" %}>
+        </a>
+        <a href="/">
+            <b>Orwell Store</b>
+        </a>
+    </div>
+    {% block menu %}
+
+    {% endblock %}
+</div>
+
+<!-- Page Content -->
+<div class="pusher">
+
+    <div class="ui inverted vertical segment">
+        <div class="ui container">
+            <div class="ui inverted secondary pointing menu">
+
+                {% block topmenu %}
+
+                {% endblock %}
+
+
+                <div class="ui inverted secondary right menu">
+                    <div class="ui inverted transparent icon input">
+                        <input type="text" placeholder="Search...">
+                        <i class="search icon"></i>
+                    </div>
+                    <div class="ui pointing inverted dropdown link item">
+                        SHOP ADDRESS
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <div class="header">New Territories</div>
+                            <div class="item">Sha Tin</div>
+                            <div class="item">Yuen Long</div>
+                            <div class="divider"></div>
+                            <div class="header">Kowloon</div>
+                            <div class="item">Kwun Tong</div>
+                            <div class="item">Sham Shui Po</div>
+                            <div class="divider"></div>
+                            <div class="header">Hong Kong Island</div>
+                            <div class="item">Wan Chai</div>
+                            <div class="item">Southern</div>
+                        </div>
+                    </div>
+                    <a class="item popup-element">
+                        <i class="shopping cart icon"></i>
+                        <span id="shoppingCartNum"></span>
+                    </a>
+                    {% block shopping_cart %}
+                        <div class="ui flowing popup bottom transition" id="popUpShoppingCart">
+                            <b hidden="hidden" id="isEmpty">Your Cart is Empty !</b>
+                            <table class="ui very basic table container" id="cartListTable">
+                                <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Subtotal</th>
+                                    <th>Delete</th>
+                                    <th hidden="hidden">pid</th>
+                                </tr>
+                                </thead>
+                                <tbody id="goods">
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colspan="2" align="right" class="ui header">Total</td>
+                                    <td id="totalQuantity"></td>
+                                    <td id="totalPrice"></td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                            {#                            <a href="/order/checkout/">#}
+                            {#                            <a href="/order/ship_info/">#}
+                            <a href="#">
+                                <button class="black fluid ui button" id="checkOutButton" hidden=""
+                                        onclick="checkOut(this)">Check Out
+                                </button>
+                            </a>
+                        </div>
+                    {% endblock %}
+
+
+                    {% if user.is_authenticated %}
+                        <div class="ui pointing inverted dropdown link item">
+                            Hi, {{ user.email }}
+                            <i class="dropdown icon"></i>
+                            <div class="menu">
+                                    <a class="item" href="/password_change/">Change Password</a>
+                                    <a class="item" href="/order/purchase_history/">Purchase History</a>
+                            </div>
+                        </div>
+
+                        <a class="item" href="/logout/">
+                            LOG OUT
+                        </a>
+                    {% else %}
+                        <a class="item" href="/login/">
+                            LOG IN
+                        </a>
+                        <a class="item" href="/signup/">
+                            SIGN UP
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% block content %}
+    {% endblock %}
+
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="ui inverted vertical footer segment">
+            <div class="ui aligned container">
+                <div class="ui stackable inverted grid">
+                    <div class="three wide column">
+                        <h4 class="ui inverted header">Customer Service</h4>
+                        <div class="ui inverted link list">
+                            <a href="#" class="item">Exchange Policy</a>
+                            <a href="#" class="item">Delivery</a>
+                            <a href="#" class="item">Support</a>
+                            <a href="#" class="item">FAQs</a>
+                        </div>
+                    </div>
+                    <div class="three wide column">
+                        <h4 class="ui inverted header">Shop Address</h4>
+                        <div class="ui inverted link list">
+                            <a href="#" class="item">New Territories</a>
+                            <a href="#" class="item">Kowloon</a>
+                            <a href="#" class="item">Hong Kong Island</a>
+                        </div>
+                    </div>
+                    <div class="three wide column">
+                        <h4 class="ui inverted header">About Orwell</h4>
+                        <div class="ui inverted link list">
+                            <a href="#" class="item">Events</a>
+                            <a href="#" class="item">Join Us</a>
+                            <a href="#" class="item">Contact Us</a>
+                        </div>
+                    </div>
+
+                    <div class="seven wide column center aligned">
+                        <h4 class="ui inverted header">Follow us</h4>
+                        <div class="ui horizontal inverted list">
+                            <a class="item" href="https://www.facebook.com"><i class="facebook icon"></i></a>
+                            <a class="item" href="https://www.youtube.com"><i class="youtube icon"></i></a>
+                            <a class="item" href="https://www.instagram.com"><i class="instagram icon"></i></a>
+                            <a class="item popup-element-top"><i class="wechat icon"></i></a>
+                            <div class="ui flowing popup">
+                                <img src={% static "img/wx_qrcode.bmp" %}>
+                            </div>
+                            <a class="item" href="https://www.weibo.com"><i class="weibo icon"></i></a>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="ui horizontal inverted link list">
+                            <a class="item">ENG</a>
+                            <a class="item">简</a>
+                            <a class="item">繁</a>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="ui fitted clearing divider"></div>
+                <div class="ui horizontal inverted small divided link list">
+                    <span class="item">&copy; 2018 Designed by Chen Tianchen</span>
+                    <a class="item" href="#">Site Map</a>
+                    <a class="item" href="#">Terms and Conditions</a>
+                    <a class="item" href="#">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<script src={% static "js/jquery-3.3.1.min.js" %}></script>
+<script src={% static "js/semantic.min.js" %}></script>
+<script src={% static "js/custom.js" %}></script>
+<script>
+    $.ajaxSetup({
+        data: {csrfmiddlewaretoken: '{{ csrf_token }}'},
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+{% extends "orders/base.html" %}
+
+{% block topmenu %}
+    <a class="item" href="/products/">
+        <i class="home icon"></i>
+        HOME
+    </a>
+{% endblock %}
+
+{% block content %}
+    <br>
+    <div class="ui container">
+        <h2 class="ui center aligned icon header">
+            <i class="circular credit card outline icon"></i>
+            Check Your Order
+        </h2>
+
+        <table class="ui single line table">
+            <thead>
+            <tr>
+                <th>Item</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+            </tr>
+            </thead>
+
+            <tbody id="checkoutinfo">
+            </tbody>
+
+            <tfoot>
+            <tr>
+                <th><b>Total</b></th>
+                <th></th>
+                <th></th>
+                <th>
+                    <i class="dollar sign icon"></i>
+                    <b>
+                        {{ total_price }}
+                        <br>
+                        ¥
+                        {{ price_cny }}
+                    </b>
+
+                </th>
+            </tr>
+            </tfoot>
+        </table>
+        <div class="ui right aligned container">You can pay in two currencies, CNY or HKD
+            <br>
+            Exchange rate is 1 HKD = 0.8 CNY
+            <br>
+        </div>
+
+        {{ form.sandbox }}
+
+        <a class="ui black right floated button" href="{{ alipay_url }}">
+            <i class="credit card icon"></i>
+            Alipay Checkout
+        </a>
+
+        <br>
+        <br>
+    </div>
+    <br>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Orwell Cyberspace{% endblock %}</title>
+    <link rel="icon" href={% static "img/favicon.png" %}>
+    <link rel="stylesheet" href={% static "css/semantic.min.css" %}>
+    <link rel="stylesheet" href={% static "css/custom.css" %}>
+</head>
+
+<body onload="clearCart()">
+<br>
+<div class="ui centered grid container">
+    <br>
+    <h1 class="ui center aligned icon header">
+        <i class="smile outline icon"></i>
+        Thanks for purchasing!
+    </h1>
+    <div class="ui row">
+        <a href="/">
+            <div class="ui vertical large black animated centered button" tabindex="0">
+                <div class="hidden content">Home</div>
+                <div class="visible content">
+                    <i class="home icon"></i>
+                </div>
+            </div>
+        </a>
+    </div>
+
+</div>
+
+<script src={% static "js/jquery-3.3.1.min.js" %}></script>
+<script src={% static "js/semantic.min.js" %}></script>
+<script src={% static "js/custom.js" %}></script>
+</body>
+</html>

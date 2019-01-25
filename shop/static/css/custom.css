@@ -1,0 +1,12 @@
+#greya{color: grey;}
+#whitea{color: white;}
+#card-no-shadow{
+    border: none !important;
+    border-color: transparent !important;
+    box-shadow: none;}
+/* .no-box-shadow.card {box-shadow: none;} */
+/* .dimmable.image .content{font-size: 20px;} */
+.page-black-bg {background: black;}
+/* .i.two.stackable.index-dimmer.cards {background-color: : black;} */
+/* .right-float {float: right; margin-bottom:10px; } */
+.ui.popup{overflow:auto;}

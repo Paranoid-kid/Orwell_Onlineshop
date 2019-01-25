@@ -1,0 +1,90 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block sidebar %}
+    visible
+{% endblock %}
+
+{% block topmenu %}
+    <a class="item" href="#" id="left-sidebar-toggle">
+        <i class="sidebar icon"></i>
+        MENU
+    </a>
+    <a class="item {% block home %}{% endblock %}" href={% url 'shop:index' %}>
+        HOME
+    </a>
+{% endblock %}
+
+
+{% block title %}
+    {% if category %}{{ category.name }}{% else %}Products{% endif %}
+{% endblock %}
+
+
+{% block menu %}
+    <div {% if not category %} class="item" {% endif %}>
+        <a href="{% url "shop:product_list" %}" class="item">All</a>
+    </div>
+
+    {% for c in categories %}
+        <div {% if category.slug == c.slug %} class="item"{% endif %}>
+            <a href="{{ c.get_absolute_url }}" class="item">{{ c.name }}</a>
+        </div>
+    {% endfor %}
+
+{% endblock %}
+
+
+{% block content %}
+    <br>
+    <div class="ui container">
+        <div class="ui breadcrumb">
+            <a class="section" id="greya" href="/">Home</a>
+            <div class="divider"> /</div>
+            <div class="section" id="greya">{% if category %}{{ category.name }}{% else %}Products{% endif %}</div>
+        </div>
+        <br>
+        <br>
+        <div class="ui grid container">
+            <div class="doubling four column row">
+                {% for product in products %}
+                    <div class="column">
+                        <div class="ui card popup-element-top">
+                            <a class="ui image" href="{{ product.get_absolute_url }}">
+                                <img src="
+
+                                        {% if product.image %}{{ product.thumb.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
+                            </a>
+                            <div class="content">
+                                                                <span>
+                                <a class="ui header greya" id="greya"
+                                   href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+                                                                    <a href="#" id="greya">
+                                                                        <i class="right floated like icon"></i>
+                                                                    </a>
+                                                                </span>
+                            </div>
+                            <div hidden="hidden" class="prod-pid">{{ product.pid }}</div>
+                            <div hidden="hidden" class="prod-name">{{ product.name }}</div>
+                            <div hidden="hidden" class="prod-price">{{ product.price }}</div>
+                            <div class="extra content">
+                                <a class="right floated" onclick="addToCart(this)">
+                                    {#                                    <div hidden="hidden">{{ product.pid }}</div>#}
+                                    <i class="plus icon"></i>
+                                    Add to Cart
+                                </a>
+                                <i class="dollar sign icon"></i>
+                                {{ product.price }}
+                            </div>
+                        </div>
+                        <div class="ui popup">
+                            <div class="header">User Rating</div>
+                            <div class="ui star rating" data-rating="4"></div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <br>
+{% endblock %}

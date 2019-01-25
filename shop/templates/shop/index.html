@@ -1,0 +1,104 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+
+
+{% block topmenu %}
+    <a class="item" {% block phone %}{% endblock %} href="/products/">
+    <i class="paper plane outline icon"></i>
+          EXPLORE
+    </a>
+
+{% endblock %}
+
+
+
+{% block content %}
+
+    <!-- product display -->
+
+    <div class="ui grid middle aligned">
+        <div class="row">
+            <a class="ui fluid image" href="#">
+                <img src={% static "img/imac.jpg" %}>
+            </a>
+        </div>
+    </div>
+
+
+    <div class="ui two stackable index-dimmer cards page-black-bg">
+        <div class="card" id="card-no-shadow">
+            <div class="dimmable image">
+                <div class="ui dimmer">
+                    <div class="content">
+                        <div class="center">
+                            <h1 class="ui inverted header">Macbook Pro 2018</h1>
+                            <div class="content">More power. More performance. More pro. <br>The Future is in Your Hand.
+                            </div>
+                            <br>
+                            <a class="ui inverted button" href="computer/">
+                                Check Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <img src={% static "img/index_dark_computer.jpg" %}>
+            </div>
+        </div>
+
+        <div class="card" id="card-no-shadow">
+            <div class="dimmable image">
+                <div class="ui dimmer">
+                    <div class="content">
+                        <div class="center">
+                            <h1 class="ui inverted header">iPhone Xs</h1>
+                            <div class="content">Welcome to the big screens.</div>
+                            <br>
+                            <a class="ui inverted button" href="phone/">
+                                Check Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <img src={% static "img/index_dark_phone.jpg" %}>
+            </div>
+        </div>
+
+        <div class="card" id="card-no-shadow">
+            <div class="dimmable image">
+                <div class="ui dimmer">
+                    <div class="content">
+                        <div class="center">
+                            <h1 class="ui inverted header">Orwell Band V</h1>
+                            <div class="content">Time to step up.<br>More stats than steps.</div>
+                            <br>
+                            <a class="ui inverted button" href="#">
+                                Check Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <img src={% static "img/index_dark_wrist3.jpg" %}>
+            </div>
+        </div>
+
+        <div class="card" id="card-no-shadow">
+            <div class="dimmable image">
+                <div class="ui dimmer">
+                    <div class="content">
+                        <div class="center">
+                            <h1 class="ui inverted header">Macbook Pro 2018</h1>
+                            <div class="content">With Great Power Comes Great Capability.<br>Run More. Wait Less.</div>
+                            <br>
+                            <a class="ui inverted button" href="computer/">
+                                Check Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <img src={% static "img/index_dark_computer7.jpg" %}>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

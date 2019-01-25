@@ -1,0 +1,21 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="icon" href="{% static "img/favicon.png" %}">
+    <link rel="stylesheet" href={% static "css/semantic.min.css" %}>
+    <link rel="stylesheet" href={% static "css/custom.css" %}>
+</head>
+<body>
+
+        {% block content %}
+        {% endblock %}
+
+<script src={% static "js/jquery-3.3.1.min.js" %}></script>
+<script src={% static "js/semantic.min.js" %}></script>
+<script src={% static "js/custom.js" %}></script>
+</body>
+</html>

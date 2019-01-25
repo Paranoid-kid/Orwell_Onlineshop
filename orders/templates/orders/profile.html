@@ -1,0 +1,50 @@
+{% extends "orders/base.html" %}
+{% load to_and %}
+
+{% block topmenu %}
+    <a class="item" href="/products/">
+        <i class="home icon"></i>
+        HOME
+    </a>
+{% endblock %}
+
+{% block content %}
+    <br>
+    <div class="ui container">
+        {% if order_qs %}
+            <table class="ui celled structured table">
+                <thead>
+                <tr>
+                    <th rowspan="2">Order ID</th>
+                    <th rowspan="2">Item</th>
+                    <th rowspan="2">Total Amount (HKD)</th>
+                    <th rowspan="2">Date</th>
+                    <th rowspan="2">Payment Method</th>
+                    <th rowspan="2">Success ?</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for order in order_qs %}
+{#                    {% if order.paid %}#}
+                    <tr>
+                        <td>{{ order.id }}</td>
+                        <td>
+                            <pre>{{ order.shoppingcart_information | to_and }}</pre>
+                        </td>
+                        <td>$ {{ order.total_price }}</td>
+                        <td>
+                            {{ order.updated }}
+                        </td>
+                        <td>{{ order.pay_method }}</td>
+                        <td>{{ order.paid }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <h3>You haven't bought anything! Go shopping!</h3>
+        {% endif %}
+    </div>
+    <br>
+
+{% endblock %}

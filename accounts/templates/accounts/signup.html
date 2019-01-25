@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    <link rel="icon" href="{% static "img/favicon.png" %}">
+    <link rel="stylesheet" href={% static "css/semantic.min.css" %}>
+    <link rel="stylesheet" href={% static "css/custom.css" %}>
+</head>
+<body>
+
+<div class="ui grid container centered">
+    <div class="six wide column">
+        <a href="/" id="greya">
+            <h2 class="ui image header">
+            <img src="{% static "img/logo.png" %}" class="image">
+            <div class="content">
+                Sign-up your account
+            </div>
+        </h2>
+        </a>
+
+        <form class="ui large form" method="post">
+            {% csrf_token %}
+            <div class="ui stacked segment">
+                {{ form.as_p }}
+
+                <input type="submit" class="ui fluid black large submit button" value="Sign Up">
+            </div>
+
+            <div class="ui error message"></div>
+        </form>
+    </div>
+</div>
+
+<script src={% static "js/jquery-3.3.1.min.js" %}></script>
+<script src={% static "js/semantic.min.js" %}></script>
+<script src={% static "js/custom.js" %}></script>
+</body>
+</html>
